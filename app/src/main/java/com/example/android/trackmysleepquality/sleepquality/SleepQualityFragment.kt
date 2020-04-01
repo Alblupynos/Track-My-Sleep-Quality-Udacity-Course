@@ -55,16 +55,16 @@ class SleepQualityFragment : Fragment() {
 
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
 
-        val SleepQualityViewModel = ViewModelProviders
+        val sleepQualityViewModel = ViewModelProviders
                 .of(this, SleepQualityViewModelFactory(arguments.sleepNightKey, dataSource))
                 .get(SleepQualityViewModel::class.java)
 
-        binding.sleepQualityViewModel = SleepQualityViewModel
+        binding.sleepQualityViewModel = sleepQualityViewModel
 
-        SleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
+        sleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
             if (it == true){
                 this.findNavController().navigate(SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment())
-                SleepQualityViewModel.doneNavigation()
+                sleepQualityViewModel.doneNavigation()
             }
         })
 
