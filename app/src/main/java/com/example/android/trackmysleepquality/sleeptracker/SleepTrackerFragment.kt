@@ -80,13 +80,13 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
         binding.sleepTrackerViewModel = sleepTrackerViewModel
         binding.sleepList.adapter = adapter
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         return binding.root
     }
