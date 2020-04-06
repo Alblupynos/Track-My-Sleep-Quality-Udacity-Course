@@ -58,9 +58,9 @@ class SleepTrackerFragment : Fragment() {
                 .of(this, SleepTrackerViewModelFactory(dataSource, application))
                 .get(SleepTrackerViewModel::class.java)
 
-        val adapter = SleepNightAdapter(SleepNightAdapter.SleepNightListener { nightId ->
+        val adapter = SleepNightAdapter { nightId ->
             sleepTrackerViewModel.onSleepNightClicked(nightId)
-        })
+        }
 
         val manager = GridLayoutManager(activity, 3)
 

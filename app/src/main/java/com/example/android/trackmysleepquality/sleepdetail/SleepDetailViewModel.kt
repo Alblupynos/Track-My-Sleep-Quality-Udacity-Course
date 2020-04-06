@@ -17,11 +17,9 @@
 package com.example.android.trackmysleepquality.sleepdetail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
-import com.example.android.trackmysleepquality.database.SleepNight
 import kotlinx.coroutines.Job
 
 /**
@@ -45,13 +43,9 @@ class SleepDetailViewModel(
      */
     private val viewModelJob = Job()
 
-    private val night = MediatorLiveData<SleepNight>()
+    private val night = database.getNightWithId(sleepNightKey)
 
     fun getNight() = night
-
-    init {
-        night.addSource(database.getNightWithId(sleepNightKey), night::setValue)
-    }
 
     /**
      * Variable that tells the fragment whether it should navigate to [SleepTrackerFragment].
